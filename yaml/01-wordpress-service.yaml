@@ -1,0 +1,24 @@
+#Por norma general, todos los manifiestos deben llevar:
+#   -Encabezado
+#   -Metadatos
+#   -Especificaciones
+
+kind: Service           #pod, deployment, service, namespace, replicaset, StatefulSet, DaemonSet, 
+                        #Job o lo que sea que vayas a describir
+apiVersion: v1
+metadata:
+  name: wordpress       #nombre del servicio en este caso
+spec:
+  type: NodePort        #Aquí se indica si se trabajará con las ip internas o se abrirá un puerto 
+                        #para desplegarlo externamente, según vimos, NodePort ordena abrir un puerto
+                        #en el worker para poder acceder externamente a este servicio
+  ports:
+  - port: 80             #Se indica el puerto que se abre en el worker
+    targetPort: 80      #Es el puerto al que apunta el servicio en cualquier pod que tenga el rol
+                        #wordpress
+    nodePort: 30000     #Es el puerto del nodo que apunta al 80 del pod
+  selector:
+    role: wordpress
+
+# Si se desea, se puede especificar otro recurso en el manifiesto separandolos por guiones
+#---
