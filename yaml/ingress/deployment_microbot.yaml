@@ -14,8 +14,8 @@ spec:
     spec:
       containers:
       - name: microbot
-        image: hub.docker.com/r/fr3nd/xeyes/
-        imagePullPolicy: IfNotPresent
+        image: gcr.io/google-samples/hello-app:2.0
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080
 
