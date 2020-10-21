@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: greetings
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - host: hello-world.info
+    http:
+      paths:
+      - path: /hola
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-service
+            port: 
+                name: http
+          
+  - host: hello-world.info
+    http:
+      paths:
+      - path: /bienvenido
+        pathType: Prefix
+        backend:
+          service:
+            name: welcome-service
+            port: 
+                name: http
+          
+  - host: hello-world.info
+    http:
+      paths:
+      - path: /adios
+        pathType: Prefix
+        backend:
+          service:
+            name: goodbye-service
+            port: 
+              name: http
